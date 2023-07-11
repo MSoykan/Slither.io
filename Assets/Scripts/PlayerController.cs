@@ -20,6 +20,8 @@ public class PlayerController : NetworkBehaviour {
 
     private void Update() {
 
+        if (IsOwner || !Application.isFocused) { return; }
+
         mouseInput.x = Input.mousePosition.x;
         mouseInput.y = Input.mousePosition.y;
         mouseInput.z = mainCamera.nearClipPlane;
@@ -27,7 +29,7 @@ public class PlayerController : NetworkBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, mouseWorldCoordinates, Time.deltaTime * speed);
 
         //Rotate
-        if(mouseWorldCoordinates != transform.position) {
+        if (mouseWorldCoordinates != transform.position) {
             Vector3 targetDirection = mouseWorldCoordinates - transform.position;
             transform.up = targetDirection;
             targetDirection.z = 0;
