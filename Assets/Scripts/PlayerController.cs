@@ -20,12 +20,13 @@ public class PlayerController : NetworkBehaviour {
 
     private void Update() {
 
-        if (IsOwner || !Application.isFocused) { return; }
+        if (!IsOwner || !Application.isFocused) { return; }
 
         mouseInput.x = Input.mousePosition.x;
         mouseInput.y = Input.mousePosition.y;
         mouseInput.z = mainCamera.nearClipPlane;
         Vector3 mouseWorldCoordinates = mainCamera.ScreenToWorldPoint(mouseInput);
+        mouseWorldCoordinates.z = 0;
         transform.position = Vector3.MoveTowards(transform.position, mouseWorldCoordinates, Time.deltaTime * speed);
 
         //Rotate
