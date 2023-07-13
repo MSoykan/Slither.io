@@ -1,8 +1,11 @@
 using System;
+using Unity.BossRoom.Infrastructure;
 using Unity.Netcode;
 using UnityEngine;
 
 public class Food : NetworkBehaviour {
+
+    public GameObject foodPrefab;
 
     private void OnTriggerEnter2D(Collider2D collision) {
 
@@ -17,7 +20,7 @@ public class Food : NetworkBehaviour {
         else if (collision.TryGetComponent(out Tail tail)) {
             tail.networkOwner.GetComponent<PlayerLength>().AddLength();
         }
-
+        //NetworkObjectPool.Singleton.ReturnNetworkObject(NetworkObject, foodPrefab);
         NetworkObject.Despawn();
 
     }

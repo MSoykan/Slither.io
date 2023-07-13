@@ -8,6 +8,9 @@ public class PlayerLength : NetworkBehaviour {
 
     public NetworkVariable<ushort> length = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+
+    public static event System.Action<ushort> OnLengthChanged;
+
     private Collider2D collider2D;
     private List<GameObject> tails;
     private Transform lastTail;
@@ -33,7 +36,10 @@ public class PlayerLength : NetworkBehaviour {
         Debug.Log("LengthChanged callback");
         InstantiateTail();
 
-
+        if (!IsOwner) {
+            return;
+        }
+        OnLengthChanged?.Invoke(length.Value);
     }
 
 
