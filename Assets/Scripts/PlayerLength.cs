@@ -21,7 +21,7 @@ public class PlayerLength : NetworkBehaviour {
         lastTail = transform;
         collider2D = GetComponent<Collider2D>();
         if (!IsServer) {
-            length.OnValueChanged += LengthChanged;
+            length.OnValueChanged += LengthChangedEvent;
         }
     }
 
@@ -29,17 +29,23 @@ public class PlayerLength : NetworkBehaviour {
     [ContextMenu("Add Length")]
     public void AddLength() {
         length.Value += 1;
-        InstantiateTail();
+        LengthChanged();
+
     }
 
-    private void LengthChanged(ushort previousValue, ushort newValue) {
-        Debug.Log("LengthChanged callback");
+    private void LengthChanged() {
+
         InstantiateTail();
 
         if (!IsOwner) {
             return;
         }
         OnLengthChanged?.Invoke(length.Value);
+    }
+
+    private void LengthChangedEvent(ushort previousValue, ushort newValue) {
+        Debug.Log("LengthChanged callback");
+        LengthChanged();
     }
 
 

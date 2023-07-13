@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1827004113221727404}
   m_Layer: 0
   m_Name: Tail
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.17326447, g: 0.5849056, b: 0.401548, a: 1}
+  m_Color: {r: 0.09518514, g: 0.8773585, b: 0.13587628, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
